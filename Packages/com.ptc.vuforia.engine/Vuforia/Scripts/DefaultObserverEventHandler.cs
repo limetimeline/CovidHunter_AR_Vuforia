@@ -40,7 +40,8 @@ public class DefaultObserverEventHandler : MonoBehaviour
     public UnityEvent OnTargetFound;
     public UnityEvent OnTargetLost;
 
-
+    static public bool TrackingSuccess = false;
+    
     protected ObserverBehaviour mObserverBehaviour;
     protected TargetStatus mPreviousTargetStatus = TargetStatus.NotObserved;
     protected bool mCallbackReceivedOnce;
@@ -182,6 +183,7 @@ public class DefaultObserverEventHandler : MonoBehaviour
             foreach (var component in canvasComponents)
                 component.enabled = true;
         }
+        TrackingSuccess = true;
         OnTargetFound?.Invoke();
     }
 
@@ -205,6 +207,7 @@ public class DefaultObserverEventHandler : MonoBehaviour
             foreach (var component in canvasComponents)
                 component.enabled = false;
         }
+        TrackingSuccess = false;
         OnTargetLost?.Invoke();
     }
 
