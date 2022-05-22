@@ -40,7 +40,7 @@ public class DefaultObserverEventHandler : MonoBehaviour
     public UnityEvent OnTargetFound;
     public UnityEvent OnTargetLost;
 
-    static public bool TrackingSuccess = false;
+    static public bool TrackingSuccess = false; // 트래킹 여부
     
     protected ObserverBehaviour mObserverBehaviour;
     protected TargetStatus mPreviousTargetStatus = TargetStatus.NotObserved;
@@ -163,7 +163,7 @@ public class DefaultObserverEventHandler : MonoBehaviour
         return false;
     }
 
-    protected virtual void OnTrackingFound()
+    protected virtual void OnTrackingFound() // 트래킹 완료
     {
         if (mObserverBehaviour)
         {
@@ -183,11 +183,11 @@ public class DefaultObserverEventHandler : MonoBehaviour
             foreach (var component in canvasComponents)
                 component.enabled = true;
         }
-        TrackingSuccess = true;
+        TrackingSuccess = true; // 트래킹 됬음을..
         OnTargetFound?.Invoke();
     }
 
-    protected virtual void OnTrackingLost()
+    protected virtual void OnTrackingLost() // 트래킹 실패
     {
         if (mObserverBehaviour)
         {
@@ -207,7 +207,7 @@ public class DefaultObserverEventHandler : MonoBehaviour
             foreach (var component in canvasComponents)
                 component.enabled = false;
         }
-        TrackingSuccess = false;
+        TrackingSuccess = false; // 트래킹 실패했음을...
         OnTargetLost?.Invoke();
     }
 
